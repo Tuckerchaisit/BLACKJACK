@@ -15,4 +15,4 @@ Blackjack is a game
 
 ### Wireframe
 Homepage
-![Home](https://imgur.com/a/ADbIp1D)
+![Home](https://imgur.com/8VKfEss)
