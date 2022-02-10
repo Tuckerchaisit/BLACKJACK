@@ -19,3 +19,16 @@ Wireframe Desktop display
 
 Wireframe Mobile display
 ![Imgur](https://i.imgur.com/ybOR8nE.png)
+
+---
+
+### Technologies Used
+
+• HTML
+
+• CSS
+
+• JavaScript
+
+---
+### Next Steps
