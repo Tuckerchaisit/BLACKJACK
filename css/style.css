@@ -10,9 +10,49 @@ html {
      but can be over-ridden as needed */
   box-sizing: inherit;
 }
-
+:root {
+  font-size: 62.5%;
+}
 body {
   background-color: gray;
   font-family: sans-serif;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
 }
+main{
+  width: 350px;
+  height: 500px;
+  text-align: center;
+  background-color: black;
+  color: white;
+}
+
+#title{
+  font-size: xx-large;
+  font-weight: bolder;
+  padding: 20px 0 0 0;
+}
+
+#dealer-card{
+  padding-top: 30px; 
+}
+
+#msg{
+  
+}
+
+#player-card{
+  padding-top: 30px; 
+}
+
+#hit-stand > .btn{
+  background-color: rgb(211, 160, 98);
+}
+#new-game{
+  margin: 10px;
+  background-color: rgb(211, 160, 98);
+}
+
