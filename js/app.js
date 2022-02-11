@@ -4,11 +4,11 @@
 // // [TODO:]Add a container element for the player’s card and dealer’s card to appended to
 // // [TODO:]Add cached element for each of the button and message area
 // // [TODO:]Add event listeners to each of the buttons
+// // [TODO:]Upon loading, the app should: 
+// // [TODO:] call an initialize function to initialize the state variables, initialize deck of cards
+// // [TODO:] Render those values to the page
+// // [TODO:]Deal two random cards each to player and dealer
 
-// [TODO:]Upon loading, the app should: 
-// [TODO:] call an initialize function to initialize the state variables, initialize deck of cards
-// [TODO:] Render those values to the page
-// [TODO:]Deal two random cards each to player and dealer
 // [TODO:]Define required constant and winning condition
 // [TODO:]Handle player clicking hit button or stand button to start the game
 // [TODO:]Handle a player clicking the Play again button.
@@ -27,7 +27,11 @@ let deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03"
 
 let winner;
 let cardPicked;
-let cardToRemove;
+let playerPoints=0;
+let dealerPoints=0;
+let dealerHand= [];
+let playerHand= [];
+
 
 /*------------------------ Cached Element References ------------------------*/
 const msgStat = document.querySelector("#msg"); //Store the element that displays the game status on the page
@@ -49,23 +53,20 @@ init();
 function init(){
 
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
-  dealHand = [null, null, null, null, null];
-  playHand = [null, null, null, null, null];
+  dealerHand = [null, null, null, null, null];
+  playerHand = [null, null, null, null, null];
   msgStat.innerHTML = "Press Start-New-Game to start the game!";
-  dealerCards.forEach(element => element.removeAttribute('class'));
-  playerCards.forEach(element =>element.removeAttribute('class'));
-  dealerCards.forEach(element => element.setAttribute('class', 'card small outline player'));
-  playerCards.forEach(element =>element.setAttribute('class', 'card small outline player'));
+  resetHands();
   handleStart();
   render();
 }
 
 function handleStart(){
   
-  assignCardDealer();
-  dealerCards[1].classList.remove('outline');
-  dealerCards[1].classList.add("back-red");
-  assignCardPlayer();
+  // assignCardDealer();
+  // dealerCards[1].classList.remove('outline');
+  // dealerCards[1].classList.add("back-red");
+  // assignCardPlayer();
   assignCardPlayer();
 }
 
@@ -73,12 +74,30 @@ function render(){
 
 }
 
-function handleHit(){
+function handleHit(){ //assign card to player
   assignCardPlayer();
 }
 
-function handleStand(){
+function handleStand(){ //check winning condition
+  calcTotal();
+}
 
+function calcTotal(){ //calculate the current points 
+  for(let i=0; i<playerHand.length; i++){
+    if(playerHand[i]!== null){
+
+      if(playerHand[i].slice(1)==='A'){
+        playerPoints+=11;
+      }else{
+        if(playerHand[i].slice(1)==='J' || playerHand[i].slice(1)==='K' || playerHand[i].slice(1)==='Q' || playerHand[i].slice(1)=== '10'){
+          playerPoints+=10;
+        }else{
+          playerPoints+=(parseInt(playerHand[i].slice(1)));
+        }
+      }
+    }
+  }
+  console.log(playerPoints);
 }
 
 function pickCard(){
@@ -89,9 +108,9 @@ function pickCard(){
 
 function assignCardDealer(){
   pickCard();
-  for(let i=0; i<dealHand.length; i++){
-    if(dealHand[i]===null){
-      dealHand[i]=cardPicked;
+  for(let i=0; i<dealerHand.length; i++){
+    if(dealerHand[i]===null){
+      dealerHand[i]=cardPicked;
       dealerCards[i].classList.remove('outline');
       dealerCards[i].classList.add(cardPicked);
       return;
@@ -101,12 +120,19 @@ function assignCardDealer(){
 
 function assignCardPlayer(){
   pickCard();
-  for(let i=0; i<playHand.length; i++){
-    if(playHand[i]===null){
-      playHand[i]=cardPicked;
+  for(let i=0; i<playerHand.length; i++){
+    if(playerHand[i]===null){
+      playerHand[i]=cardPicked;
       playerCards[i].classList.remove('outline');
       playerCards[i].classList.add(cardPicked);
       return;
     }
   }
+}
+
+function resetHands(){
+  dealerCards.forEach(element => element.removeAttribute('class'));
+  playerCards.forEach(element =>element.removeAttribute('class'));
+  dealerCards.forEach(element => element.setAttribute('class', 'card small outline player'));
+  playerCards.forEach(element =>element.setAttribute('class', 'card small outline player'));
 }
