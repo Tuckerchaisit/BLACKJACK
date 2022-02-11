@@ -27,8 +27,8 @@ let deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03"
 
 let winner;
 let cardPicked;
-let playerPoints=0;
-let dealerPoints=0;
+let playerPoints;
+let dealerPoints;
 let dealerHand= [];
 let playerHand= [];
 
@@ -55,6 +55,8 @@ function init(){
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
   dealerHand = [null, null, null, null, null];
   playerHand = [null, null, null, null, null];
+  playerPoints = 0;
+  dealerPoints = 0;
   msgStat.innerHTML = "Press Start-New-Game to start the game!";
   resetHands();
   handleStart();
@@ -79,24 +81,30 @@ function handleHit(){ //assign card to player
 }
 
 function handleStand(){ //check winning condition
+  playerPoints=0;
   calcTotal();
 }
 
-function calcTotal(){ //calculate the current points 
+function calcTotal(){ //calculate the current points of player and dealer
   for(let i=0; i<playerHand.length; i++){
-    if(playerHand[i]!== null){
-
-      if(playerHand[i].slice(1)==='A'){
-        playerPoints+=11;
+    if(playerHand[i]!== null && playerHand[i].slice(1)!=='A'){
+      if(playerHand[i].slice(1)==='J' || playerHand[i].slice(1)==='K' || playerHand[i].slice(1)==='Q' || playerHand[i].slice(1)=== '10'){
+        playerPoints+=10;
       }else{
-        if(playerHand[i].slice(1)==='J' || playerHand[i].slice(1)==='K' || playerHand[i].slice(1)==='Q' || playerHand[i].slice(1)=== '10'){
-          playerPoints+=10;
-        }else{
-          playerPoints+=(parseInt(playerHand[i].slice(1)));
-        }
+        playerPoints+=(parseInt(playerHand[i].slice(1)));
       }
     }
   }
+  for(let i=0; i<playerHand.length; i++){
+    if(playerHand[i]!== null && playerHand[i].slice(1)==='A'){
+      if(playerPoints<=10){
+        playerPoints+=10;
+      }else{
+        playerPoints+=1;
+      }
+    }
+  }
+
   console.log(playerPoints);
 }
 
