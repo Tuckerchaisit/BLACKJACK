@@ -1,20 +1,21 @@
-/**Pseudo-code:
+// Pseudo-code:
 
-[TODO:]Add the HTML components for message area, hit button, stand button, play again button
-[TODO:]Add a container element for the player’s card and dealer’s card to appended to
-[TODO:]Add cached element for each of the button and message area
-[TODO:]Add event listeners to each of the buttons
-[TODO:]Upon loading, the app should: 
-[TODO:] call an initialize function to initialize the state variables, initialize deck of cards
-[TODO:] Render those values to the page
-[TODO:]Deal two random cards each to player and dealer
-[TODO:]Define required constant and winning condition
-[TODO:]Handle player clicking hit button or stand button to start the game
-[TODO:]Handle a player clicking the Play again button.
-[TODO:]Add responsive design
-[TODO:]Add google Fonts
-[TODO:]Add a favicon to our site
- */
+// // [TODO:]Add the HTML components for message area, hit button, stand button, play again button 
+// // [TODO:]Add a container element for the player’s card and dealer’s card to appended to
+// // [TODO:]Add cached element for each of the button and message area
+// // [TODO:]Add event listeners to each of the buttons
+
+// [TODO:]Upon loading, the app should: 
+// [TODO:] call an initialize function to initialize the state variables, initialize deck of cards
+// [TODO:] Render those values to the page
+// [TODO:]Deal two random cards each to player and dealer
+// [TODO:]Define required constant and winning condition
+// [TODO:]Handle player clicking hit button or stand button to start the game
+// [TODO:]Handle a player clicking the Play again button.
+// [TODO:]Add responsive design
+// [TODO:]Add google Fonts
+// [TODO:]Add a favicon to our site
+
 
 
 /*-------------------------------- Constants --------------------------------*/
@@ -35,7 +36,9 @@ const standBtn = document.querySelector(".stand");
 const playAgainBtn = document.querySelector(".new-game");
 
 /*----------------------------- Event Listeners -----------------------------*/
-
+hitBtn.addEventListener('click',handleHit);
+standBtn.addEventListener('click',handleStand);
+playAgainBtn.addEventListener('click',init);
 
 
 /*-------------------------------- Functions --------------------------------*/
