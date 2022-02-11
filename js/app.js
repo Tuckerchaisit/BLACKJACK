@@ -26,7 +26,7 @@
 let deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
 
 let winner;
-
+let cardPicked;
 
 /*------------------------ Cached Element References ------------------------*/
 const msgStat = document.querySelector("#msg"); //Store the element that displays the game status on the page
@@ -51,7 +51,9 @@ function init(){
   dealHand = [null, null, null, null, null];
   playHand = [null, null, null, null, null];
   msgStat.innerHTML = "Press Start-New-Game to start the game!";
-  pickCard();
+  assignCardDealer();
+  assignCardPlayer();
+  
   render();
 }
 
@@ -73,6 +75,28 @@ function handleStand(){
 
 function pickCard(){
   let randIdx = Math.floor(Math.random()*deck1.length);
-  let cardPicked = deck1.splice(randIdx, 1)[0];
+  cardPicked = deck1.splice(randIdx, 1)[0];
   console.log(cardPicked);
+}
+
+function assignCardDealer(){
+  pickCard();
+  for(let i=0; i<dealHand.length; i++){
+    if(dealHand[i]===null){
+      dealHand[i]=cardPicked;
+      dealerCards[i].classList.add(cardPicked);
+      return;
+    }
+  }
+}
+
+function assignCardPlayer(){
+  pickCard();
+  for(let i=0; i<playHand.length; i++){
+    if(playHand[i]===null){
+      playHand[i]=cardPicked;
+      playerCards[i].classList.add(cardPicked);
+      return;
+    }
+  }
 }
