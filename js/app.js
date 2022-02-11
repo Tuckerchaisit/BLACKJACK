@@ -57,7 +57,7 @@ function init(){
   playerHand = [null, null, null, null, null];
   playerPoints = 0;
   dealerPoints = 0;
-  msgStat.innerHTML = "Press Start-New-Game to start the game!";
+  //msgStat.innerHTML = "Press Start-New-Game to start the game!";
   resetHands();
   handleStart();
   render();
@@ -65,19 +65,32 @@ function init(){
 
 function handleStart(){
   
-  // assignCardDealer();
-  // dealerCards[1].classList.remove('outline');
-  // dealerCards[1].classList.add("back-red");
-  // assignCardPlayer();
+  assignCardDealer();
+  dealerCards[1].classList.remove('outline');
+  dealerCards[1].classList.add("back-red");
   assignCardPlayer();
+  assignCardPlayer();
+  //calcTotal();
 }
 
 function render(){
+  calcTotal();
+  isWinner();
+}
 
+function isWinner(){
+  if(playerPoints===21){
+    msgStat.innerHTML= "!!BLACKJACK!!"
+  }else{
+    msgStat.innerHTML= `The player current score is ${playerPoints}, HIT or STAND`
+  }
+  
 }
 
 function handleHit(){ //assign card to player
+  playerPoints=0;
   assignCardPlayer();
+  render();
 }
 
 function handleStand(){ //check winning condition
@@ -86,6 +99,33 @@ function handleStand(){ //check winning condition
 }
 
 function calcTotal(){ //calculate the current points of player and dealer
+  calcPlayerTotal();
+  calcDealerTotal();
+}
+
+function calcDealerTotal(){
+  for(let i=0; i<dealerHand.length; i++){
+    if(dealerHand[i]!== null && dealerHand[i].slice(1)!=='A'){
+      if(dealerHand[i].slice(1)==='J' || dealerHand[i].slice(1)==='K' || dealerHand[i].slice(1)==='Q' || dealerHand[i].slice(1)=== '10'){
+        dealerPoints+=10;
+      }else{
+        dealerPoints+=(parseInt(dealerHand[i].slice(1)));
+      }
+    }
+  }
+  for(let i=0; i<dealerHand.length; i++){  //condition with ACE(value of )
+    if(dealerHand[i]!== null && dealerHand[i].slice(1)==='A'){
+      if(dealerPoints<=10){
+        dealerPoints+=11;
+      }else{
+        dealerPoints+=1;
+      }
+    }
+  }
+  console.log(dealerPoints);
+}
+
+function calcPlayerTotal(){
   for(let i=0; i<playerHand.length; i++){
     if(playerHand[i]!== null && playerHand[i].slice(1)!=='A'){
       if(playerHand[i].slice(1)==='J' || playerHand[i].slice(1)==='K' || playerHand[i].slice(1)==='Q' || playerHand[i].slice(1)=== '10'){
@@ -95,17 +135,16 @@ function calcTotal(){ //calculate the current points of player and dealer
       }
     }
   }
-  for(let i=0; i<playerHand.length; i++){
+  for(let i=0; i<playerHand.length; i++){  //condition with ACE(value of )
     if(playerHand[i]!== null && playerHand[i].slice(1)==='A'){
       if(playerPoints<=10){
-        playerPoints+=10;
+        playerPoints+=11;
       }else{
         playerPoints+=1;
       }
     }
   }
-
-  console.log(playerPoints);
+  console.log(playerPoints)
 }
 
 function pickCard(){
