@@ -27,6 +27,7 @@ let deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03"
 
 let winner;
 let cardPicked;
+let cardToRemove;
 
 /*------------------------ Cached Element References ------------------------*/
 const msgStat = document.querySelector("#msg"); //Store the element that displays the game status on the page
@@ -39,7 +40,7 @@ const StartNewGame = document.querySelector(".new-game");
 /*----------------------------- Event Listeners -----------------------------*/
 hitBtn.addEventListener('click',handleHit);
 standBtn.addEventListener('click',handleStand);
-StartNewGame.addEventListener('click',handleStart);
+StartNewGame.addEventListener('click',init);
 
 
 /*-------------------------------- Functions --------------------------------*/
@@ -51,12 +52,18 @@ function init(){
   dealHand = [null, null, null, null, null];
   playHand = [null, null, null, null, null];
   msgStat.innerHTML = "Press Start-New-Game to start the game!";
+  dealerCards.forEach(element => element.removeAttribute('class'));
+  playerCards.forEach(element =>element.removeAttribute('class'));
+  dealerCards.forEach(element => element.setAttribute('class', 'card small outline player'));
+  playerCards.forEach(element =>element.setAttribute('class', 'card small outline player'));
   handleStart();
   render();
 }
 
 function handleStart(){
+  
   assignCardDealer();
+  dealerCards[1].classList.remove('outline');
   dealerCards[1].classList.add("back-red");
   assignCardPlayer();
   assignCardPlayer();
@@ -67,7 +74,7 @@ function render(){
 }
 
 function handleHit(){
-
+  assignCardPlayer();
 }
 
 function handleStand(){
@@ -77,7 +84,7 @@ function handleStand(){
 function pickCard(){
   let randIdx = Math.floor(Math.random()*deck1.length);
   cardPicked = deck1.splice(randIdx, 1)[0];
-  console.log(cardPicked);
+  
 }
 
 function assignCardDealer(){
@@ -85,6 +92,7 @@ function assignCardDealer(){
   for(let i=0; i<dealHand.length; i++){
     if(dealHand[i]===null){
       dealHand[i]=cardPicked;
+      dealerCards[i].classList.remove('outline');
       dealerCards[i].classList.add(cardPicked);
       return;
     }
@@ -96,6 +104,7 @@ function assignCardPlayer(){
   for(let i=0; i<playHand.length; i++){
     if(playHand[i]===null){
       playHand[i]=cardPicked;
+      playerCards[i].classList.remove('outline');
       playerCards[i].classList.add(cardPicked);
       return;
     }
