@@ -51,14 +51,15 @@ function init(){
   dealHand = [null, null, null, null, null];
   playHand = [null, null, null, null, null];
   msgStat.innerHTML = "Press Start-New-Game to start the game!";
-  assignCardDealer();
-  assignCardPlayer();
-  
+  handleStart();
   render();
 }
 
 function handleStart(){
-
+  assignCardDealer();
+  dealerCards[1].classList.add("back-red");
+  assignCardPlayer();
+  assignCardPlayer();
 }
 
 function render(){
