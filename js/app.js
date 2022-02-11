@@ -8,10 +8,14 @@
 // // [TODO:] call an initialize function to initialize the state variables, initialize deck of cards
 // // [TODO:] Render those values to the page
 // // [TODO:]Deal two random cards each to player and dealer
+// // [TODO:]Define required constant and winning condition
+// // [TODO:]Handle player clicking hit button or stand button to start the game
+// // [TODO:]Handle a player clicking the Play again button.
 
-// [TODO:]Define required constant and winning condition
-// [TODO:]Handle player clicking hit button or stand button to start the game
-// [TODO:]Handle a player clicking the Play again button.
+//[TODO:] condition with two aces
+//[TODO:] dealer has a blackjack
+//[TODO:] blackjack condition with only ace and facecard- excluding 10
+//[TODO:] problem with dealer exceeding 21 and the msg is not showing that the player has won
 // [TODO:]Add responsive design
 // [TODO:]Add google Fonts
 // [TODO:]Add a favicon to our site
@@ -57,6 +61,8 @@ function init(){
   playerHand = [null, null, null, null, null];
   playerPoints = 0;
   dealerPoints = 0;
+  hitBtn.disabled = false;
+  standBtn.disabled = false;
   //msgStat.innerHTML = "Press Start-New-Game to start the game!";
   resetHands();
   handleStart();
@@ -70,21 +76,29 @@ function handleStart(){
   dealerCards[1].classList.add("back-red");
   assignCardPlayer();
   assignCardPlayer();
-  //calcTotal();
 }
 
 function render(){
   calcTotal();
-  isWinner();
+  isBJ();
 }
 
-function isWinner(){
-  if(playerPoints===21){
-    msgStat.innerHTML= "!!BLACKJACK!!"
-  }else{
-    msgStat.innerHTML= `The player current score is ${playerPoints}, HIT or STAND`
+function isBJ(){
+  if(playerPoints===21 && (playerHand[0]==='A' || playerHand[1]==='A')){
+    msgStat.innerHTML= "!! B L A C K J A C K !!"
+    stopHitStand();
   }
-  
+  if(playerPoints===21){
+    msgStat.innerHTML= "The player has won"
+    stopHitStand();
+  }else{
+    if(playerPoints>21){
+      msgStat.innerHTML= `The player has lost, Player score exceed 21!`
+      stopHitStand();
+    }else{
+      msgStat.innerHTML= `The player current score is ${playerPoints}, HIT or STAND`
+      } 
+  }
 }
 
 function handleHit(){ //assign card to player
@@ -96,6 +110,50 @@ function handleHit(){ //assign card to player
 function handleStand(){ //check winning condition
   playerPoints=0;
   calcTotal();
+  dealerPlay();
+  isWinner();
+}
+
+function isWinner(){
+
+  if(playerPoints<22 && playerPoints>dealerPoints && dealerPoints<22){
+    msgStat.innerHTML= `The player has won, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+    stopHitStand();
+    }else{
+      if(playerPoints<dealerPoints && dealerPoints<22){
+      msgStat.innerHTML= `The player has lost, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+      stopHitStand();
+      }else{
+
+        if(dealerPoints>21){
+          `The player has won, Dealer score exceed 21!`
+          stopHitStand();
+        }
+          else{
+          msgStat.innerHTML= "It's a Tie!"
+          stopHitStand();
+          }
+      }
+     }
+}
+
+function dealerPlay(){
+  dealerCards[1].classList.remove('back-red');
+  // dealerCards[1].classList.add('outline');
+  assignCardDealer();
+  calcDealerTotal();
+  if(playerPoints===21 && (playerHand[0]==='A' || playerHand[1]==='A')){
+    msgStat.innerHTML= "!! B L A C K J A C K !!"
+    stopHitStand();
+  }
+  while(dealerPoints<17){
+    assignCardDealer();
+    calcDealerTotal();
+    if(playerPoints===21 && (playerHand[0]==='A' || playerHand[1]==='A')){
+      msgStat.innerHTML= "!! B L A C K J A C K !!"
+      stopHitStand();
+    }
+  }
 }
 
 function calcTotal(){ //calculate the current points of player and dealer
@@ -104,6 +162,7 @@ function calcTotal(){ //calculate the current points of player and dealer
 }
 
 function calcDealerTotal(){
+  dealerPoints=0;
   for(let i=0; i<dealerHand.length; i++){
     if(dealerHand[i]!== null && dealerHand[i].slice(1)!=='A'){
       if(dealerHand[i].slice(1)==='J' || dealerHand[i].slice(1)==='K' || dealerHand[i].slice(1)==='Q' || dealerHand[i].slice(1)=== '10'){
@@ -126,6 +185,7 @@ function calcDealerTotal(){
 }
 
 function calcPlayerTotal(){
+  playerPoints=0;
   for(let i=0; i<playerHand.length; i++){
     if(playerHand[i]!== null && playerHand[i].slice(1)!=='A'){
       if(playerHand[i].slice(1)==='J' || playerHand[i].slice(1)==='K' || playerHand[i].slice(1)==='Q' || playerHand[i].slice(1)=== '10'){
@@ -182,4 +242,9 @@ function resetHands(){
   playerCards.forEach(element =>element.removeAttribute('class'));
   dealerCards.forEach(element => element.setAttribute('class', 'card small outline player'));
   playerCards.forEach(element =>element.setAttribute('class', 'card small outline player'));
+}
+
+function stopHitStand(){
+  hitBtn.disabled = true;
+  standBtn.disabled = true;
 }
