@@ -26,7 +26,8 @@ main{
   width: 350px;
   height: 500px;
   text-align: center;
-  background-color: black;
+  background-image: url(../images/bg.png);
+  
   color: white;
 }
 
@@ -49,10 +50,12 @@ main{
 }
 
 #hit-stand > .btn{
-  background-color: rgb(211, 160, 98);
+  background-color: whitesmoke;
+  color: darkgreen;
 }
 #new-game{
   margin: 10px;
-  background-color: rgb(211, 160, 98);
+  background-color: whitesmoke;
+  color: darkgreen
 }
 
