@@ -12,13 +12,15 @@
 // // [TODO:]Handle player clicking hit button or stand button to start the game
 // // [TODO:]Handle a player clicking the Play again button.
 
-//[TODO:] condition with two aces
 //[TODO:] dealer has a blackjack
-//[TODO:] blackjack condition with only ace and facecard- excluding 10
-//[TODO:] problem with dealer exceeding 21 and the msg is not showing that the player has won
+
+//[TODO:] condition with two aces
+
 // [TODO:]Add responsive design
 // [TODO:]Add google Fonts
 // [TODO:]Add a favicon to our site
+
+//game is blackjack, 22 commit, 90% done with game functionality, started styling, start responsive design but the larger display is breaking, finish drafting README, now debugging the code which currently have 4 and all of them is related to dealer which i think its's bc my brain was fried at the end 
 
 
 
@@ -63,7 +65,6 @@ function init(){
   dealerPoints = 0;
   hitBtn.disabled = false;
   standBtn.disabled = false;
-  //msgStat.innerHTML = "Press Start-New-Game to start the game!";
   resetHands();
   handleStart();
   render();
@@ -84,21 +85,26 @@ function render(){
 }
 
 function isBJ(){
-  if(playerPoints===21 && (playerHand[0]==='A' || playerHand[1]==='A')){
-    msgStat.innerHTML= "!! B L A C K J A C K !!"
-    stopHitStand();
-  }
+  
+  
   if(playerPoints===21){
-    msgStat.innerHTML= "The player has won"
-    stopHitStand();
+    if(((playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='K') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='Q') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='J'))
+    ||((playerHand[0].slice(1)==='K' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='Q' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='J' && playerHand[1].slice(1)==='A'))){
+      msgStat.innerHTML= "!! B L A C K J A C K !!"
+      stopHitStand();
+    }else{
+      msgStat.innerHTML= "The player has won"
+      stopHitStand();
+    }
   }else{
     if(playerPoints>21){
       msgStat.innerHTML= `The player has lost, Player score exceed 21!`
       stopHitStand();
-    }else{
+      }else{
       msgStat.innerHTML= `The player current score is ${playerPoints}, HIT or STAND`
       } 
   }
+  
 }
 
 function handleHit(){ //assign card to player
@@ -116,43 +122,37 @@ function handleStand(){ //check winning condition
 
 function isWinner(){
 
-  if(playerPoints<22 && playerPoints>dealerPoints && dealerPoints<22){
-    msgStat.innerHTML= `The player has won, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+  if(dealerPoints>21){
+    msgStat.innerHTML=`The player has won, Dealer score exceed 21!`
     stopHitStand();
-    }else{
-      if(playerPoints<dealerPoints && dealerPoints<22){
-      msgStat.innerHTML= `The player has lost, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+  }else{
+    if(playerPoints<22 && playerPoints>dealerPoints && dealerPoints<22){
+      msgStat.innerHTML= `The player has won, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
       stopHitStand();
       }else{
-
-        if(dealerPoints>21){
-          `The player has won, Dealer score exceed 21!`
-          stopHitStand();
+        if(playerPoints<dealerPoints && dealerPoints<22){
+        msgStat.innerHTML= `The player has lost, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+        stopHitStand();
+        }else{
+            msgStat.innerHTML= "It's a Tie!"
+            stopHitStand();
         }
-          else{
-          msgStat.innerHTML= "It's a Tie!"
-          stopHitStand();
-          }
-      }
-     }
+       }
+  }
 }
 
 function dealerPlay(){
   dealerCards[1].classList.remove('back-red');
-  // dealerCards[1].classList.add('outline');
   assignCardDealer();
   calcDealerTotal();
-  if(playerPoints===21 && (playerHand[0]==='A' || playerHand[1]==='A')){
-    msgStat.innerHTML= "!! B L A C K J A C K !!"
-    stopHitStand();
-  }
-  while(dealerPoints<17){
-    assignCardDealer();
-    calcDealerTotal();
-    if(playerPoints===21 && (playerHand[0]==='A' || playerHand[1]==='A')){
+  if(((playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='K') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='Q') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='J'))
+    ||((playerHand[0].slice(1)==='K' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='Q' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='J' && playerHand[1].slice(1)==='A'))){
       msgStat.innerHTML= "!! B L A C K J A C K !!"
       stopHitStand();
     }
+  while(dealerPoints<17){
+    assignCardDealer();
+    calcDealerTotal();
   }
 }
 
