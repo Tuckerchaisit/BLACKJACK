@@ -77,6 +77,16 @@ function handleStart(){
   dealerCards[1].classList.add("back-red");
   assignCardPlayer();
   assignCardPlayer();
+
+  //test 3 ACE condition
+  // playerHand = ['dA','dA','dA',null,null];
+  // playerCards[0].classList.remove('outline');
+  // playerCards[0].classList.add('dA');
+  // playerCards[1].classList.remove('outline');
+  // playerCards[1].classList.add('dA');
+  // playerCards[2].classList.remove('outline');
+  // playerCards[2].classList.add('dA');
+  
 }
 
 function render(){
