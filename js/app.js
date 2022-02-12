@@ -12,15 +12,11 @@
 // // [TODO:]Handle player clicking hit button or stand button to start the game
 // // [TODO:]Handle a player clicking the Play again button.
 
-//[TODO:] dealer has a blackjack
-
-//[TODO:] condition with two aces
 
 // [TODO:]Add responsive design
 // [TODO:]Add google Fonts
 // [TODO:]Add a favicon to our site
 
-//game is blackjack, 22 commit, 90% done with game functionality, started styling, start responsive design but the larger display is breaking, finish drafting README, now debugging the code which currently have 4 and all of them is related to dealer which i think its's bc my brain was fried at the end 
 
 
 
@@ -35,10 +31,8 @@ let winner;
 let cardPicked;
 let playerPoints;
 let dealerPoints;
-let dealerHand= [];
-let playerHand= [];
-
-
+let dealerHand = [];
+let playerHand = [];
 /*------------------------ Cached Element References ------------------------*/
 const msgStat = document.querySelector("#msg"); //Store the element that displays the game status on the page
 const dealerCards = Array.from(document.querySelectorAll(".dealer"));
@@ -51,13 +45,10 @@ const StartNewGame = document.querySelector(".new-game");
 hitBtn.addEventListener('click',handleHit);
 standBtn.addEventListener('click',handleStand);
 StartNewGame.addEventListener('click',init);
-
-
 /*-------------------------------- Functions --------------------------------*/
 init();
 
 function init(){
-
   deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
   dealerHand = [null, null, null, null, null];
   playerHand = [null, null, null, null, null];
@@ -71,7 +62,6 @@ function init(){
 }
 
 function handleStart(){
-  
   assignCardDealer();
   dealerCards[1].classList.remove('outline');
   dealerCards[1].classList.add("back-red");
@@ -86,7 +76,6 @@ function handleStart(){
   // playerCards[1].classList.add('dA');
   // playerCards[2].classList.remove('outline');
   // playerCards[2].classList.add('dA');
-  
 }
 
 function render(){
@@ -95,8 +84,6 @@ function render(){
 }
 
 function isBJ(){
-  
-  
   if(playerPoints===21){
     if(((playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='K') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='Q') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='J'))
     ||((playerHand[0].slice(1)==='K' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='Q' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='J' && playerHand[1].slice(1)==='A'))){
@@ -114,7 +101,6 @@ function isBJ(){
       msgStat.innerHTML= `The player current score is ${playerPoints}, HIT or STAND`
       } 
   }
-  
 }
 
 function handleHit(){ //assign card to player
@@ -131,7 +117,6 @@ function handleStand(){ //check winning condition
 }
 
 function isWinner(){
-
   if(dealerPoints>21){
     msgStat.innerHTML=`The player has won, Dealer score exceed 21!`
     stopHitStand();
@@ -154,7 +139,7 @@ function isWinner(){
               msgStat.innerHTML= "It's a Tie!"
               stopHitStand();
           }
-         }
+        }
     }
   }
 }
@@ -224,7 +209,6 @@ function calcPlayerTotal(){
 function pickCard(){
   let randIdx = Math.floor(Math.random()*deck1.length);
   cardPicked = deck1.splice(randIdx, 1)[0];
-  
 }
 
 function assignCardDealer(){
