@@ -90,7 +90,7 @@ function isBJ(){
   if(playerPoints===21){
     if(((playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='K') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='Q') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='J'))
     ||((playerHand[0].slice(1)==='K' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='Q' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='J' && playerHand[1].slice(1)==='A'))){
-      msgStat.innerHTML= "!! B L A C K J A C K !!"
+      msgStat.innerHTML= "Player has a !! B L A C K J A C K !!"
       stopHitStand();
     }else{
       msgStat.innerHTML= "The player has won"
@@ -126,18 +126,26 @@ function isWinner(){
     msgStat.innerHTML=`The player has won, Dealer score exceed 21!`
     stopHitStand();
   }else{
-    if(playerPoints<22 && playerPoints>dealerPoints && dealerPoints<22){
-      msgStat.innerHTML= `The player has won, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
-      stopHitStand();
-      }else{
-        if(playerPoints<dealerPoints && dealerPoints<22){
-        msgStat.innerHTML= `The player has lost, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+    if(dealerPoints===21){
+      if(((dealerHand[0].slice(1)==='A' && dealerHand[1].slice(1)==='K') || (dealerHand[0].slice(1)==='A' && dealerHand[1].slice(1)==='Q') || (dealerHand[0].slice(1)==='A' && dealerHand[1].slice(1)==='J'))
+        ||((dealerHand[0].slice(1)==='K' && dealerHand[1].slice(1)==='A') || (dealerHand[0].slice(1)==='Q' && dealerHand[1].slice(1)==='A') || (dealerHand[0].slice(1)==='J' && dealerHand[1].slice(1)==='A'))){
+          msgStat.innerHTML= "Dealer has a !! B L A C K J A C K !!"
+          stopHitStand();
+        }
+    }else{
+      if(playerPoints<22 && playerPoints>dealerPoints && dealerPoints<22){
+        msgStat.innerHTML= `The player has won, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
         stopHitStand();
         }else{
-            msgStat.innerHTML= "It's a Tie!"
-            stopHitStand();
-        }
-       }
+          if(playerPoints<dealerPoints && dealerPoints<22){
+          msgStat.innerHTML= `The player has lost, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+          stopHitStand();
+          }else{
+              msgStat.innerHTML= "It's a Tie!"
+              stopHitStand();
+          }
+         }
+    }
   }
 }
 
@@ -145,11 +153,7 @@ function dealerPlay(){
   dealerCards[1].classList.remove('back-red');
   assignCardDealer();
   calcDealerTotal();
-  if(((playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='K') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='Q') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='J'))
-    ||((playerHand[0].slice(1)==='K' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='Q' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='J' && playerHand[1].slice(1)==='A'))){
-      msgStat.innerHTML= "!! B L A C K J A C K !!"
-      stopHitStand();
-    }
+  
   while(dealerPoints<17){
     assignCardDealer();
     calcDealerTotal();
