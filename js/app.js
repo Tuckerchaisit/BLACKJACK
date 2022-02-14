@@ -123,7 +123,7 @@ function isWinner() {
     if (dealerPoints === 21) {
       if (((dealerHand[0].slice(1) === 'A' && dealerHand[1].slice(1) === 'K') || (dealerHand[0].slice(1) === 'A' && dealerHand[1].slice(1) === 'Q') || (dealerHand[0].slice(1) === 'A' && dealerHand[1].slice(1) === 'J'))
         || ((dealerHand[0].slice(1) === 'K' && dealerHand[1].slice(1) === 'A') || (dealerHand[0].slice(1) === 'Q' && dealerHand[1].slice(1) === 'A') || (dealerHand[0].slice(1) === 'J' && dealerHand[1].slice(1) === 'A'))) {
-        msgStat.innerHTML = "Dealer has a !! B L A C K J A C K !!"
+        msgStat.innerHTML = 'Dealer has a !! B L A C K J A C K !!'
         stopHitStand();
       }
     } else {
@@ -135,7 +135,7 @@ function isWinner() {
           msgStat.innerHTML = `The player has lost, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
           stopHitStand();
         } else {
-          msgStat.innerHTML = "It's a Tie!"
+          msgStat.innerHTML = `It's a Tie! The score is ${playerPoints}`
           stopHitStand();
         }
       }
