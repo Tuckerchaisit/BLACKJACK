@@ -14,7 +14,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  background-color: gray;
+  background-color: rgb(180, 235, 205);
   font-family: sans-serif;
   margin: 0;
   display: flex;
@@ -58,7 +58,7 @@ main{
   color: darkgreen
 }
 
-/* @media only screen and (min-width: 600px) {
+@media only screen and (min-width: 600px) {
   main {
     text-align: center;
     width: 700px;  
@@ -71,8 +71,6 @@ main{
       "player msg";
   }
   
-
-
 #title{
   font-size: xxx-large;
   font-weight: bolder;
@@ -93,4 +91,4 @@ main{
 #group-button{
   grid-area: button;
 }
-} */
+}
