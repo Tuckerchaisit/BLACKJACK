@@ -18,6 +18,7 @@
   <main>
     <div id="title">BLACKJACK</div>
     <section id="dealer-card">
+      <div id="dealer-text">Dealer's card:</div>
       <p class="card small outline dealer"></p>
       <p class="card small outline dealer"></p>
       <p class="card small outline dealer"></p>
@@ -26,6 +27,7 @@
     </section>
     <div id="msg">MESSAGE AREA</div>
     <section id="player-card">
+    <div id="player-text">Player's card:</div>
       <p class="card small outline player"></p>
       <p class="card small outline player"></p>
       <p class="card small outline player"></p>
@@ -34,8 +36,8 @@
     </section>
     <section id="group-button">
       <section id="hit-stand">
-        <button class="btn hit"><img src="./images/pushBTNdemo.png"></button>
-        <button class="btn stand">STAND</button>
+        <button class="btn hit"><img id="hit-btn" src="./images/hitBtn.png"></button>
+        <button class="btn stand"><img id="stand-btn" src="./images/standBtn.png"></button>
       </section>
       <button id="new-game" class="new-game">Start New Game</button>
     </section>

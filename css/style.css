@@ -31,22 +31,50 @@ main{
 }
 
 #title{
-  font-size: xx-large;
+  font-size: 45px;
   font-weight: bolder;
-  padding: 20px 0 0 0;
+  padding: 10px 0;
+}
+#dealer-text{
+  text-align: left;
+  margin-left: 9px;
+  font-size: 11px;
+}
+#player-text{
+  text-align: left;
+  margin-left: 9px;
+  font-size: 11px;
 }
 
-#dealer-card{
-  padding-top: 30px; 
+#dealer-card > .card{
+  margin: 5px 2px 5px;
 }
 
-#player-card{
-  padding-top: 30px; 
+#player-card > .card{
+  margin: 5px 2px 5px;
 }
 
-#hit-stand > .btn{
+#msg{
+  margin: 20px 0;
+}
+
+#hit-stand > .hit{
   background-color: transparent;
-  color: darkgreen;
+  width: 60px;
+  padding: 0px;
+  margin-top: 10px;
+}
+#hit-btn{
+  width: 100%;
+}
+#hit-stand > .stand{
+  background-color: transparent;
+  width: 60px;
+  padding: 0px;
+  margin-top: 10px;
+}
+#stand-btn{
+  width: 100%;
 }
 #new-game{
   margin: 10px;
@@ -61,7 +89,7 @@ main{
     height: 420px; 
     display: grid;
     grid-template-columns: 60% 40%;
-    grid-template-rows: 35% auto auto;
+    grid-template-rows: 30% auto auto;
     grid-template-areas: 
       "title title"
       "dealer msg"
@@ -72,30 +100,33 @@ main{
   font-size: 85px;
   font-weight: bolder;
   grid-area: title;
+  padding: 0;
+  margin: 10px 0 0 0;
 }
 
 #dealer-card{
   grid-area: dealer;
-  padding: 30px 0 0 40px;
+  padding: 0 0 0 40px;
 }
 
 #msg{
   grid-area: msg;
-  margin: 30px 50px 0 0;
+  margin: 30px 10px 0 0;
   font-size: 20px;
 }
 
 #player-card{
   grid-area: player; 
   margin-bottom: 50px;
-  padding: 0 0 0 40px;
+  padding: 10px 0 0 40px;
 }
 #group-button{
   grid-area: button;
-  margin: 0 50px 0 0;
+  margin: 0 50px ;
 }
 .hit{
-  margin-right: 5px;;
+  margin-right: 5px;
+  border-radius: 20px;
 }
 #new-game{
   margin-top: 15px;
