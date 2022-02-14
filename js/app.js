@@ -12,9 +12,8 @@
 // // [TODO:]Handle player clicking hit button or stand button to start the game
 // // [TODO:]Handle a player clicking the Play again button.
 // // [TODO:]Add a favicon to our site
+// // [TODO:]Add responsive design
 
-
-// [TODO:]Add responsive design
 // [TODO:]Add google Fonts
 
 
@@ -26,7 +25,7 @@
 
 
 /*---------------------------- Variables (state) ----------------------------*/
-let deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+let deck1 = ["dA", "dQ", "dK", "dJ", "d10", "d09", "d08", "d07", "d06", "d05", "d04", "d03", "d02", "hA", "hQ", "hK", "hJ", "h10", "h09", "h08", "h07", "h06", "h05", "h04", "h03", "h02", "cA", "cQ", "cK", "cJ", "c10", "c09", "c08", "c07", "c06", "c05", "c04", "c03", "c02", "sA", "sQ", "sK", "sJ", "s10", "s09", "s08", "s07", "s06", "s05", "s04", "s03", "s02"]
 
 let cardPicked;
 let playerPoints;
@@ -42,14 +41,14 @@ const standBtn = document.querySelector(".stand");
 const StartNewGame = document.querySelector(".new-game");
 
 /*----------------------------- Event Listeners -----------------------------*/
-hitBtn.addEventListener('click',handleHit);
-standBtn.addEventListener('click',handleStand);
-StartNewGame.addEventListener('click',init);
+hitBtn.addEventListener('click', handleHit);
+standBtn.addEventListener('click', handleStand);
+StartNewGame.addEventListener('click', init);
 /*-------------------------------- Functions --------------------------------*/
 init();
 
-function init(){
-  deck1 = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"]
+function init() {
+  deck1 = ["dA", "dQ", "dK", "dJ", "d10", "d09", "d08", "d07", "d06", "d05", "d04", "d03", "d02", "hA", "hQ", "hK", "hJ", "h10", "h09", "h08", "h07", "h06", "h05", "h04", "h03", "h02", "cA", "cQ", "cK", "cJ", "c10", "c09", "c08", "c07", "c06", "c05", "c04", "c03", "c02", "sA", "sQ", "sK", "sJ", "s10", "s09", "s08", "s07", "s06", "s05", "s04", "s03", "s02"]
   dealerHand = [null, null, null, null, null];
   playerHand = [null, null, null, null, null];
   playerPoints = 0;
@@ -61,7 +60,7 @@ function init(){
   render();
 }
 
-function handleStart(){
+function handleStart() {
   assignCardDealer();
   dealerCards[1].classList.remove('outline');
   dealerCards[1].classList.add("back-red");
@@ -78,144 +77,144 @@ function handleStart(){
   // playerCards[2].classList.add('dA');
 }
 
-function render(){
+function render() {
   calcTotal();
   isBJ();
 }
 
-function isBJ(){
-  if(playerPoints===21){
-    if(((playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='K') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='Q') || (playerHand[0].slice(1)==='A' && playerHand[1].slice(1)==='J'))
-    ||((playerHand[0].slice(1)==='K' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='Q' && playerHand[1].slice(1)==='A') || (playerHand[0].slice(1)==='J' && playerHand[1].slice(1)==='A'))){
-      msgStat.innerHTML= "Player has a !! B L A C K J A C K !!"
+function isBJ() {
+  if (playerPoints === 21) {
+    if (((playerHand[0].slice(1) === 'A' && playerHand[1].slice(1) === 'K') || (playerHand[0].slice(1) === 'A' && playerHand[1].slice(1) === 'Q') || (playerHand[0].slice(1) === 'A' && playerHand[1].slice(1) === 'J'))
+      || ((playerHand[0].slice(1) === 'K' && playerHand[1].slice(1) === 'A') || (playerHand[0].slice(1) === 'Q' && playerHand[1].slice(1) === 'A') || (playerHand[0].slice(1) === 'J' && playerHand[1].slice(1) === 'A'))) {
+      msgStat.innerHTML = "Player has a !! B L A C K J A C K !!"
       stopHitStand();
-    }else{
-      msgStat.innerHTML= "The player has won"
+    } else {
+      msgStat.innerHTML = "The player has won"
       stopHitStand();
     }
-      }else{
-    if(playerPoints>21){
-      msgStat.innerHTML= `The player has lost, Player score exceed 21!`
+  } else {
+    if (playerPoints > 21) {
+      msgStat.innerHTML = `The player has lost, Player score exceed 21!`
       stopHitStand();
-      }else{
-      msgStat.innerHTML= `The player current score is ${playerPoints}, HIT or STAND`
-      } 
+    } else {
+      msgStat.innerHTML = `The player current score is ${playerPoints}, HIT or STAND`
+    }
   }
 }
 
-function handleHit(){ //assign card to player
-  playerPoints=0;
+function handleHit() { //assign card to player
+  playerPoints = 0;
   assignCardPlayer();
   render();
 }
 
-function handleStand(){ //check winning condition
-  playerPoints=0;
+function handleStand() { //check winning condition
+  playerPoints = 0;
   calcTotal();
   dealerPlay();
   isWinner();
 }
 
-function isWinner(){
-  if(dealerPoints>21){
-    msgStat.innerHTML=`The player has won, Dealer score exceed 21!`
+function isWinner() {
+  if (dealerPoints > 21) {
+    msgStat.innerHTML = `The player has won, Dealer score exceed 21!`
     stopHitStand();
-  }else{
-    if(dealerPoints===21){
-      if(((dealerHand[0].slice(1)==='A' && dealerHand[1].slice(1)==='K') || (dealerHand[0].slice(1)==='A' && dealerHand[1].slice(1)==='Q') || (dealerHand[0].slice(1)==='A' && dealerHand[1].slice(1)==='J'))
-        ||((dealerHand[0].slice(1)==='K' && dealerHand[1].slice(1)==='A') || (dealerHand[0].slice(1)==='Q' && dealerHand[1].slice(1)==='A') || (dealerHand[0].slice(1)==='J' && dealerHand[1].slice(1)==='A'))){
-          msgStat.innerHTML= "Dealer has a !! B L A C K J A C K !!"
-          stopHitStand();
-        }
-    }else{
-      if(playerPoints<22 && playerPoints>dealerPoints && dealerPoints<22){
-        msgStat.innerHTML= `The player has won, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+  } else {
+    if (dealerPoints === 21) {
+      if (((dealerHand[0].slice(1) === 'A' && dealerHand[1].slice(1) === 'K') || (dealerHand[0].slice(1) === 'A' && dealerHand[1].slice(1) === 'Q') || (dealerHand[0].slice(1) === 'A' && dealerHand[1].slice(1) === 'J'))
+        || ((dealerHand[0].slice(1) === 'K' && dealerHand[1].slice(1) === 'A') || (dealerHand[0].slice(1) === 'Q' && dealerHand[1].slice(1) === 'A') || (dealerHand[0].slice(1) === 'J' && dealerHand[1].slice(1) === 'A'))) {
+        msgStat.innerHTML = "Dealer has a !! B L A C K J A C K !!"
         stopHitStand();
-        }else{
-          if(playerPoints<dealerPoints && dealerPoints<22){
-          msgStat.innerHTML= `The player has lost, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+      }
+    } else {
+      if (playerPoints < 22 && playerPoints > dealerPoints && dealerPoints < 22) {
+        msgStat.innerHTML = `The player has won, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+        stopHitStand();
+      } else {
+        if (playerPoints < dealerPoints && dealerPoints < 22) {
+          msgStat.innerHTML = `The player has lost, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
           stopHitStand();
-          }else{
-              msgStat.innerHTML= "It's a Tie!"
-              stopHitStand();
-          }
+        } else {
+          msgStat.innerHTML = "It's a Tie!"
+          stopHitStand();
         }
+      }
     }
   }
 }
 
-function dealerPlay(){
+function dealerPlay() {
   dealerCards[1].classList.remove('back-red');
   assignCardDealer();
   calcDealerTotal();
-  
-  while(dealerPoints<17){
+
+  while (dealerPoints < 17) {
     assignCardDealer();
     calcDealerTotal();
   }
 }
 
-function calcTotal(){ //calculate the current points of player and dealer
+function calcTotal() { //calculate the current points of player and dealer
   calcPlayerTotal();
   calcDealerTotal();
 }
 
-function calcDealerTotal(){
-  dealerPoints=0;
-  for(let i=0; i<dealerHand.length; i++){
-    if(dealerHand[i]!== null && dealerHand[i].slice(1)!=='A'){
-      if(dealerHand[i].slice(1)==='J' || dealerHand[i].slice(1)==='K' || dealerHand[i].slice(1)==='Q' || dealerHand[i].slice(1)=== '10'){
-        dealerPoints+=10;
-      }else{
-        dealerPoints+=(parseInt(dealerHand[i].slice(1)));
+function calcDealerTotal() {
+  dealerPoints = 0;
+  for (let i = 0; i < dealerHand.length; i++) {
+    if (dealerHand[i] !== null && dealerHand[i].slice(1) !== 'A') {
+      if (dealerHand[i].slice(1) === 'J' || dealerHand[i].slice(1) === 'K' || dealerHand[i].slice(1) === 'Q' || dealerHand[i].slice(1) === '10') {
+        dealerPoints += 10;
+      } else {
+        dealerPoints += (parseInt(dealerHand[i].slice(1)));
       }
     }
   }
-  for(let i=0; i<dealerHand.length; i++){  //condition with ACE(value of )
-    if(dealerHand[i]!== null && dealerHand[i].slice(1)==='A'){
-      if(dealerPoints<=10){
-        dealerPoints+=11;
-      }else{
-        dealerPoints+=1;
+  for (let i = 0; i < dealerHand.length; i++) {  //condition with ACE(value of )
+    if (dealerHand[i] !== null && dealerHand[i].slice(1) === 'A') {
+      if (dealerPoints <= 10) {
+        dealerPoints += 11;
+      } else {
+        dealerPoints += 1;
       }
     }
   }
   console.log(dealerPoints);
 }
 
-function calcPlayerTotal(){
-  playerPoints=0;
-  for(let i=0; i<playerHand.length; i++){
-    if(playerHand[i]!== null && playerHand[i].slice(1)!=='A'){
-      if(playerHand[i].slice(1)==='J' || playerHand[i].slice(1)==='K' || playerHand[i].slice(1)==='Q' || playerHand[i].slice(1)=== '10'){
-        playerPoints+=10;
-      }else{
-        playerPoints+=(parseInt(playerHand[i].slice(1)));
+function calcPlayerTotal() {
+  playerPoints = 0;
+  for (let i = 0; i < playerHand.length; i++) {
+    if (playerHand[i] !== null && playerHand[i].slice(1) !== 'A') {
+      if (playerHand[i].slice(1) === 'J' || playerHand[i].slice(1) === 'K' || playerHand[i].slice(1) === 'Q' || playerHand[i].slice(1) === '10') {
+        playerPoints += 10;
+      } else {
+        playerPoints += (parseInt(playerHand[i].slice(1)));
       }
     }
   }
-  for(let i=0; i<playerHand.length; i++){  //condition with ACE(value of )
-    if(playerHand[i]!== null && playerHand[i].slice(1)==='A'){
-      if(playerPoints<=10){
-        playerPoints+=11;
-      }else{
-        playerPoints+=1;
+  for (let i = 0; i < playerHand.length; i++) {  //condition with ACE(value of )
+    if (playerHand[i] !== null && playerHand[i].slice(1) === 'A') {
+      if (playerPoints <= 10) {
+        playerPoints += 11;
+      } else {
+        playerPoints += 1;
       }
     }
   }
   console.log(playerPoints)
 }
 
-function pickCard(){
-  let randIdx = Math.floor(Math.random()*deck1.length);
+function pickCard() {
+  let randIdx = Math.floor(Math.random() * deck1.length);
   cardPicked = deck1.splice(randIdx, 1)[0];
 }
 
-function assignCardDealer(){
+function assignCardDealer() {
   pickCard();
-  for(let i=0; i<dealerHand.length; i++){
-    if(dealerHand[i]===null){
-      dealerHand[i]=cardPicked;
+  for (let i = 0; i < dealerHand.length; i++) {
+    if (dealerHand[i] === null) {
+      dealerHand[i] = cardPicked;
       dealerCards[i].classList.remove('outline');
       dealerCards[i].classList.add(cardPicked);
       return;
@@ -223,11 +222,11 @@ function assignCardDealer(){
   }
 }
 
-function assignCardPlayer(){
+function assignCardPlayer() {
   pickCard();
-  for(let i=0; i<playerHand.length; i++){
-    if(playerHand[i]===null){
-      playerHand[i]=cardPicked;
+  for (let i = 0; i < playerHand.length; i++) {
+    if (playerHand[i] === null) {
+      playerHand[i] = cardPicked;
       playerCards[i].classList.remove('outline');
       playerCards[i].classList.add(cardPicked);
       return;
@@ -235,14 +234,14 @@ function assignCardPlayer(){
   }
 }
 
-function resetHands(){
+function resetHands() {
   dealerCards.forEach(element => element.removeAttribute('class'));
-  playerCards.forEach(element =>element.removeAttribute('class'));
+  playerCards.forEach(element => element.removeAttribute('class'));
   dealerCards.forEach(element => element.setAttribute('class', 'card small outline player'));
-  playerCards.forEach(element =>element.setAttribute('class', 'card small outline player'));
+  playerCards.forEach(element => element.setAttribute('class', 'card small outline player'));
 }
 
-function stopHitStand(){
+function stopHitStand() {
   hitBtn.disabled = true;
   standBtn.disabled = true;
 }
