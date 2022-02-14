@@ -14,7 +14,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  background-color: rgb(180, 235, 205);
+  background-color: rgb(220, 220, 220);
   font-family: sans-serif;
   margin: 0;
   display: flex;
@@ -61,34 +61,47 @@ main{
 @media only screen and (min-width: 600px) {
   main {
     text-align: center;
-    width: 700px;  
+    width: 650px; 
+    height: 420px; 
     display: grid;
-    grid-template-columns: 70% 30%;
-    grid-template-rows: 40% 30% 30%;
+    grid-template-columns: 60% 40%;
+    grid-template-rows: 35% auto auto;
     grid-template-areas: 
-      "title button"
+      "title title"
       "dealer msg"
-      "player msg";
+      "player button";
   }
   
 #title{
-  font-size: xxx-large;
+  font-size: 85px;
   font-weight: bolder;
   grid-area: title;
 }
 
 #dealer-card{
   grid-area: dealer;
+  padding: 30px 0 0 40px;
 }
 
 #msg{
   grid-area: msg;
+  margin: 30px 50px 0 0;
+  font-size: 20px;
 }
 
 #player-card{
   grid-area: player; 
+  margin-bottom: 50px;
+  padding: 0 0 0 40px;
 }
 #group-button{
   grid-area: button;
+  margin: 0 50px 0 0;
+}
+.hit{
+  margin-right: 5px;;
+}
+#new-game{
+  margin-top: 15px;
 }
 }
