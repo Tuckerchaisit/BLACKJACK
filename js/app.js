@@ -45,6 +45,12 @@ const StartNewGame = document.querySelector(".new-game");
 hitBtn.addEventListener('click', handleHit);
 standBtn.addEventListener('click', handleStand);
 StartNewGame.addEventListener('click', init);
+hitBtn.addEventListener('mouseover',() => {hitBtn.classList.add('animate__animated', 'animate__tada');});
+hitBtn.addEventListener('mouseleave',() => {hitBtn.classList.remove('animate__animated', 'animate__tada');});
+standBtn.addEventListener('mouseover',() => {standBtn.classList.add('animate__animated', 'animate__tada',);});
+standBtn.addEventListener('mouseleave',() => {standBtn.classList.remove('animate__animated', 'animate__tada');});
+StartNewGame.addEventListener('mouseover', () => {StartNewGame.classList.add('animate__animated', 'animate__pulse',);});
+StartNewGame.addEventListener('mouseleave', () => {StartNewGame.classList.remove('animate__animated', 'animate__pulse',);});
 /*-------------------------------- Functions --------------------------------*/
 init();
 
@@ -62,6 +68,7 @@ function init() {
 }
 
 function handleStart() {
+
   assignCardDealer();
   dealerCards[1].classList.remove('outline');
   dealerCards[1].classList.add("back-red");
@@ -147,6 +154,7 @@ function isWinner() {
 
 function dealerPlay() {
   dealerCards[1].classList.remove('back-red');
+  dealerCards[1].classList.add('animate__animated', 'animate__flipInY');
   assignCardDealer();
   calcDealerTotal();
 
@@ -251,6 +259,7 @@ function assignCardDealer() {
       dealerHand[i] = cardPicked;
       dealerCards[i].classList.remove('outline');
       dealerCards[i].classList.add(cardPicked);
+      dealerCards[i].classList.add('animate__animated', 'animate__flipInY');
       return;
     }
   }
@@ -263,15 +272,17 @@ function assignCardPlayer() {
       playerHand[i] = cardPicked;
       playerCards[i].classList.remove('outline');
       playerCards[i].classList.add(cardPicked);
+      playerCards[i].classList.add('animate__animated', 'animate__flipInY');
       return;
     }
-  }
+    }
 }
 
 function resetHands() {
   dealerCards.forEach(element => element.removeAttribute('class'));
   playerCards.forEach(element => element.removeAttribute('class'));
-  dealerCards.forEach(element => element.setAttribute('class', 'card small outline player'));
+  void hitBtn.offsetHeight
+  dealerCards.forEach(element => element.setAttribute('class', 'card small outline dealer'));
   playerCards.forEach(element => element.setAttribute('class', 'card small outline player'));
 }
 
