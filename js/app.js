@@ -91,15 +91,15 @@ function isBJ() {
       msgStat.innerHTML = "Player has a !! B L A C K J A C K !!"
       stopHitStand();
     } else {
-      msgStat.innerHTML = "The player has won"
+      msgStat.innerHTML = "The player has won <br/> Player score: 21"
       stopHitStand();
     }
   } else {
     if (playerPoints > 21) {
-      msgStat.innerHTML = `The player has lost, Player score exceed 21!`
+      msgStat.innerHTML = `The player has lost <br/> Player score exceed 21!`
       stopHitStand();
     } else {
-      msgStat.innerHTML = `The player current score is ${playerPoints}, HIT or STAND`
+      msgStat.innerHTML = `The player current score is ${playerPoints} <br/> HIT or STAND`
     }
   }
 }
@@ -119,7 +119,7 @@ function handleStand() { //check winning condition
 
 function isWinner() {
   if (dealerPoints > 21) {
-    msgStat.innerHTML = `The player has won, Dealer score exceed 21!`
+    msgStat.innerHTML = `The player has won <br/> Dealer score exceed 21!`
     stopHitStand();
   } else {
     if (dealerPoints === 21) {
@@ -130,14 +130,14 @@ function isWinner() {
       }
     } else {
       if (playerPoints < 22 && playerPoints > dealerPoints && dealerPoints < 22) {
-        msgStat.innerHTML = `The player has won, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+        msgStat.innerHTML = `The player has won <br/> Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
         stopHitStand();
       } else {
         if (playerPoints < dealerPoints && dealerPoints < 22) {
-          msgStat.innerHTML = `The player has lost, Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+          msgStat.innerHTML = `The player has lost <br/> Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
           stopHitStand();
         } else {
-          msgStat.innerHTML = `It's a Tie! The score is ${playerPoints}`
+          msgStat.innerHTML = `It's a Tie! <br/> The score is ${playerPoints}`
           stopHitStand();
         }
       }
