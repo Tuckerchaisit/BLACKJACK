@@ -1,5 +1,11 @@
 /*-------------------------------- Constants --------------------------------*/
 const flipSound = new Audio("../audio/flipSound.wav")
+const playerWonSound = new Audio("../audio/playerWonSound.m4a")
+const dealerWonSound = new Audio("../audio/dealerWonSound.m4a")
+const tieSound = new Audio("../audio/tieSound.m4a")
+const bjSound = new Audio("../audio/bjSound.m4a")
+const hitOrStandSound = new Audio("../audio/hitOrStandSound.m4a")
+
 
 /*---------------------------- Variables (state) ----------------------------*/
 let deck1 = ["dA", "dQ", "dK", "dJ", "d10", "d09", "d08", "d07", "d06", "d05", "d04", "d03", "d02", "hA", "hQ", "hK", "hJ", "h10", "h09", "h08", "h07", "h06", "h05", "h04", "h03", "h02", "cA", "cQ", "cK", "cJ", "c10", "c09", "c08", "c07", "c06", "c05", "c04", "c03", "c02", "sA", "sQ", "sK", "sJ", "s10", "s09", "s08", "s07", "s06", "s05", "s04", "s03", "s02"]
@@ -72,29 +78,35 @@ function isBJ() {
   if (playerPoints === 21) {
     if (((playerHand[0].slice(1) === 'A' && playerHand[1].slice(1) === 'K') || (playerHand[0].slice(1) === 'A' && playerHand[1].slice(1) === 'Q') || (playerHand[0].slice(1) === 'A' && playerHand[1].slice(1) === 'J'))
       || ((playerHand[0].slice(1) === 'K' && playerHand[1].slice(1) === 'A') || (playerHand[0].slice(1) === 'Q' && playerHand[1].slice(1) === 'A') || (playerHand[0].slice(1) === 'J' && playerHand[1].slice(1) === 'A'))) {
-      msgStat.innerHTML = "Player has a !! B L A C K J A C K !!"
+      bjSound.play();
+      msgStat.innerHTML = "Player has <br/> !! B L A C K J A C K !!"
       stopHitStand();
     } else {
+      playerWonSound.play();
       msgStat.innerHTML = "The player has won <br/> Player score: 21"
       stopHitStand();
     }
   } else {
     if (playerPoints > 21) {
+      dealerWonSound.play();
       msgStat.innerHTML = `The player has lost <br/> Player's score exceed 21!`
       stopHitStand();
     } else {
+      hitOrStandSound.play();
       msgStat.innerHTML = `The player's current score is ${playerPoints} <br/> HIT or STAND`
     }
   }
 }
 
 function handleHit() { //assign card to player
+  
   playerPoints = 0;
   assignCardPlayer();
   render();
 }
 
 function handleStand() { //check winning condition
+  
   playerPoints = 0;
   calcTotal();
   dealerPlay();
@@ -103,24 +115,29 @@ function handleStand() { //check winning condition
 
 function isWinner() {
   if (dealerPoints > 21) {
+    playerWonSound.play();
     msgStat.innerHTML = `The player has won <br/> Dealer's score exceed 21!`
     stopHitStand();
   } else {
     if (dealerPoints === 21) {
       if (((dealerHand[0].slice(1) === 'A' && dealerHand[1].slice(1) === 'K') || (dealerHand[0].slice(1) === 'A' && dealerHand[1].slice(1) === 'Q') || (dealerHand[0].slice(1) === 'A' && dealerHand[1].slice(1) === 'J'))
         || ((dealerHand[0].slice(1) === 'K' && dealerHand[1].slice(1) === 'A') || (dealerHand[0].slice(1) === 'Q' && dealerHand[1].slice(1) === 'A') || (dealerHand[0].slice(1) === 'J' && dealerHand[1].slice(1) === 'A'))) {
-        msgStat.innerHTML = 'Dealer has a !! B L A C K J A C K !!'
+        bjSound.play();
+        msgStat.innerHTML = 'Dealer has <br/> !! B L A C K J A C K !!'
         stopHitStand();
       }
     } else {
       if (playerPoints < 22 && playerPoints > dealerPoints && dealerPoints < 22) {
+        playerWonSound.play();
         msgStat.innerHTML = `The player has won <br/> Player score: ${playerPoints}<br/> Dealer score: ${dealerPoints}`
         stopHitStand();
       } else {
         if (playerPoints < dealerPoints && dealerPoints < 22) {
+          dealerWonSound.play();
           msgStat.innerHTML = `The player has lost <br/> Player score: ${playerPoints}<br/> Dealer score: ${dealerPoints}`
           stopHitStand();
         } else {
+          tieSound.play();
           msgStat.innerHTML = `It's a Tie! <br/> The score is ${playerPoints}`
           stopHitStand();
         }
