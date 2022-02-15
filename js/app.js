@@ -30,6 +30,7 @@ let deck1 = ["dA", "dQ", "dK", "dJ", "d10", "d09", "d08", "d07", "d06", "d05", "
 let cardPicked;
 let playerPoints;
 let dealerPoints;
+let aceCounter;
 let dealerHand = [];
 let playerHand = [];
 /*------------------------ Cached Element References ------------------------*/
@@ -75,6 +76,7 @@ function handleStart() {
   // playerCards[1].classList.add('dA');
   // playerCards[2].classList.remove('outline');
   // playerCards[2].classList.add('dA');
+  
 }
 
 function render() {
@@ -170,20 +172,37 @@ function calcDealerTotal() {
       }
     }
   }
-  for (let i = 0; i < dealerHand.length; i++) {  //condition with ACE(value of )
+  for (let i = 0; i < dealerHand.length; i++) {  //get how many aces are on the hand
     if (dealerHand[i] !== null && dealerHand[i].slice(1) === 'A') {
-      if (dealerPoints <= 10) {
+      aceCounter++;
+    }
+  }
+  for (let i = 0; i < dealerHand.length; i++) {  //condition with value of ace based on how many aces are on the hand
+    if (dealerHand[i] !== null && dealerHand[i].slice(1) === 'A') {
+      if (dealerHand <= 10 && aceCounter<2) {
         dealerPoints += 11;
       } else {
         dealerPoints += 1;
+        if(aceCounter ===2 && dealerPoints<10){
+          dealerPoints += 10;
+        }else{
+          if(aceCounter ===3 && dealerPoints<9){
+            dealerPoints += 10;
+          }else{
+            if(aceCounter===4 && dealerPoints<8){
+              dealerPoints += 10;
+            }
+          }
+        }
       }
     }
   }
-  console.log(dealerPoints);
+  
 }
 
 function calcPlayerTotal() {
   playerPoints = 0;
+  aceCounter=0;
   for (let i = 0; i < playerHand.length; i++) {
     if (playerHand[i] !== null && playerHand[i].slice(1) !== 'A') {
       if (playerHand[i].slice(1) === 'J' || playerHand[i].slice(1) === 'K' || playerHand[i].slice(1) === 'Q' || playerHand[i].slice(1) === '10') {
@@ -193,16 +212,31 @@ function calcPlayerTotal() {
       }
     }
   }
-  for (let i = 0; i < playerHand.length; i++) {  //condition with ACE(value of )
+  for (let i = 0; i < playerHand.length; i++) {  //get how many aces are on the hand
     if (playerHand[i] !== null && playerHand[i].slice(1) === 'A') {
-      if (playerPoints <= 10) {
+      aceCounter++;
+    }
+  }
+  for (let i = 0; i < playerHand.length; i++) {  //condition with value of ace based on how many aces are on the hand
+    if (playerHand[i] !== null && playerHand[i].slice(1) === 'A') {
+      if (playerPoints <= 10 && aceCounter<2) {
         playerPoints += 11;
       } else {
         playerPoints += 1;
+        if(aceCounter ===2 && playerPoints<10){
+          playerPoints += 10;
+        }else{
+          if(aceCounter ===3 && playerPoints<9){
+            playerPoints += 10;
+          }else{
+            if(aceCounter===4 && playerPoints<8){
+              playerPoints += 10;
+            }
+          }
+        }
       }
     }
   }
-  console.log(playerPoints)
 }
 
 function pickCard() {
