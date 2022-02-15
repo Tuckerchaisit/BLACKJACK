@@ -61,9 +61,9 @@ main{
 }
 
 #msg{
-  margin: 20px 0;
+  margin: 5px 0;
   font-family: var(--cursive);
-  font-size: 12px;
+  font-size: 15px;
 }
 
 #hit-stand > .hit{

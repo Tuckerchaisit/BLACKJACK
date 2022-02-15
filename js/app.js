@@ -1,28 +1,5 @@
-// Pseudo-code:
-
-// // [TODO:]Add the HTML components for message area, hit button, stand button, play again button 
-// // [TODO:]Add a container element for the player’s card and dealer’s card to appended to
-// // [TODO:]Add cached element for each of the button and message area
-// // [TODO:]Add event listeners to each of the buttons
-// // [TODO:]Upon loading, the app should: 
-// // [TODO:] call an initialize function to initialize the state variables, initialize deck of cards
-// // [TODO:] Render those values to the page
-// // [TODO:]Deal two random cards each to player and dealer
-// // [TODO:]Define required constant and winning condition
-// // [TODO:]Handle player clicking hit button or stand button to start the game
-// // [TODO:]Handle a player clicking the Play again button.
-// // [TODO:]Add a favicon to our site
-// // [TODO:]Add responsive design
-
-// [TODO:]Add google Fonts
-
-
-
-
-
 /*-------------------------------- Constants --------------------------------*/
-
-
+const flipSound = new Audio("../audio/flipSound.wav")
 
 /*---------------------------- Variables (state) ----------------------------*/
 let deck1 = ["dA", "dQ", "dK", "dJ", "d10", "d09", "d08", "d07", "d06", "d05", "d04", "d03", "d02", "hA", "hQ", "hK", "hJ", "h10", "h09", "h08", "h07", "h06", "h05", "h04", "h03", "h02", "cA", "cQ", "cK", "cJ", "c10", "c09", "c08", "c07", "c06", "c05", "c04", "c03", "c02", "sA", "sQ", "sK", "sJ", "s10", "s09", "s08", "s07", "s06", "s05", "s04", "s03", "s02"]
@@ -137,11 +114,11 @@ function isWinner() {
       }
     } else {
       if (playerPoints < 22 && playerPoints > dealerPoints && dealerPoints < 22) {
-        msgStat.innerHTML = `The player has won <br/> Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+        msgStat.innerHTML = `The player has won <br/> Player score: ${playerPoints}<br/> Dealer score: ${dealerPoints}`
         stopHitStand();
       } else {
         if (playerPoints < dealerPoints && dealerPoints < 22) {
-          msgStat.innerHTML = `The player has lost <br/> Player score: ${playerPoints}, Dealer score: ${dealerPoints}`
+          msgStat.innerHTML = `The player has lost <br/> Player score: ${playerPoints}<br/> Dealer score: ${dealerPoints}`
           stopHitStand();
         } else {
           msgStat.innerHTML = `It's a Tie! <br/> The score is ${playerPoints}`
@@ -259,6 +236,7 @@ function assignCardDealer() {
       dealerHand[i] = cardPicked;
       dealerCards[i].classList.remove('outline');
       dealerCards[i].classList.add(cardPicked);
+      flipSound.play();
       dealerCards[i].classList.add('animate__animated', 'animate__flipInY');
       return;
     }
@@ -272,6 +250,7 @@ function assignCardPlayer() {
       playerHand[i] = cardPicked;
       playerCards[i].classList.remove('outline');
       playerCards[i].classList.add(cardPicked);
+      flipSound.play();
       playerCards[i].classList.add('animate__animated', 'animate__flipInY');
       return;
     }
