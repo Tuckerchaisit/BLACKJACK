@@ -12,6 +12,8 @@ html {
 }
 :root {
   font-size: 62.5%;
+  --cursive: "Audiowide", cursive;
+  --serif: "Cinzel Decorative", serif;
 }
 body {
   background-color: whitesmoke;
@@ -34,16 +36,19 @@ main{
   font-size: 45px;
   font-weight: bolder;
   padding: 10px 0;
+  font-family: var(--serif);
 }
 #dealer-text{
   text-align: left;
   margin-left: 9px;
-  font-size: 11px;
+  font-size: 7px;
+  font-family: var(--cursive);
 }
 #player-text{
   text-align: left;
   margin-left: 9px;
-  font-size: 11px;
+  font-size: 7px;
+  font-family: var(--cursive);
 }
 
 #dealer-card > .card{
@@ -56,30 +61,36 @@ main{
 
 #msg{
   margin: 20px 0;
+  font-family: var(--cursive);
+  font-size: 12px;
 }
 
 #hit-stand > .hit{
   background-color: transparent;
-  width: 60px;
+  width: 70px;
   padding: 0px;
   margin-top: 10px;
 }
 #hit-btn{
-  width: 100%;
+  width: 90%;
 }
 #hit-stand > .stand{
   background-color: transparent;
-  width: 60px;
+  width: 70px;
   padding: 0px;
   margin-top: 10px;
 }
 #stand-btn{
-  width: 100%;
+  width: 90%;
 }
 #new-game{
   margin: 10px;
-  background-color: whitesmoke;
-  color: darkgreen
+  background-color: rgb(184, 69, 96);
+  color: rgb(255, 254, 255);
+  border: solid 2px whitesmoke;
+  border-radius: 25px; 
+  font-size: smaller;
+  font-family: var(--cursive);
 }
 
 @media only screen and (min-width: 600px) {
