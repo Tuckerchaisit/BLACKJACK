@@ -103,10 +103,10 @@ function isBJ() {
     }
   } else {
     if (playerPoints > 21) {
-      msgStat.innerHTML = `The player has lost <br/> Player score exceed 21!`
+      msgStat.innerHTML = `The player has lost <br/> Player's score exceed 21!`
       stopHitStand();
     } else {
-      msgStat.innerHTML = `The player current score is ${playerPoints} <br/> HIT or STAND`
+      msgStat.innerHTML = `The player's current score is ${playerPoints} <br/> HIT or STAND`
     }
   }
 }
@@ -126,7 +126,7 @@ function handleStand() { //check winning condition
 
 function isWinner() {
   if (dealerPoints > 21) {
-    msgStat.innerHTML = `The player has won <br/> Dealer score exceed 21!`
+    msgStat.innerHTML = `The player has won <br/> Dealer's score exceed 21!`
     stopHitStand();
   } else {
     if (dealerPoints === 21) {
