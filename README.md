@@ -22,7 +22,7 @@ Wireframe Mobile display
 ![Imgur](https://i.imgur.com/ybOR8nE.png)
 
 Mockup
-![Imgur](https://i.imgur.com/a/N5iph2W.png)
+![Imgur](https://i.imgur.com/4T6SiLL.png)
 ![Imgur](https://i.imgur.com/kCEw3nh.png)
 
 ---
