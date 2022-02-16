@@ -23,6 +23,7 @@ const playerCards = Array.from(document.querySelectorAll(".player"));
 const hitBtn = document.querySelector(".hit");
 const standBtn = document.querySelector(".stand");
 const StartNewGame = document.querySelector(".new-game");
+const banner = document.querySelector("#title");
 
 /*----------------------------- Event Listeners -----------------------------*/
 hitBtn.addEventListener('click', handleHit);
@@ -80,6 +81,8 @@ function isBJ() {
       || ((playerHand[0].slice(1) === 'K' && playerHand[1].slice(1) === 'A') || (playerHand[0].slice(1) === 'Q' && playerHand[1].slice(1) === 'A') || (playerHand[0].slice(1) === 'J' && playerHand[1].slice(1) === 'A'))) {
       bjSound.play();
       msgStat.innerHTML = "Player has <br/> !! B L A C K J A C K !!"
+      banner.classList.add('animate__animated', 'animate__flash');
+      msgStat.classList.add('animate__animated', 'animate__flash');
       stopHitStand();
     } else {
       playerWonSound.play();
@@ -124,6 +127,8 @@ function isWinner() {
         || ((dealerHand[0].slice(1) === 'K' && dealerHand[1].slice(1) === 'A') || (dealerHand[0].slice(1) === 'Q' && dealerHand[1].slice(1) === 'A') || (dealerHand[0].slice(1) === 'J' && dealerHand[1].slice(1) === 'A'))) {
         bjSound.play();
         msgStat.innerHTML = 'Dealer has <br/> !! B L A C K J A C K !!'
+        banner.classList.add('animate__animated', 'animate__flash');
+        msgStat.classList.add('animate__animated', 'animate__flash');
         stopHitStand();
       }else{
         dealerWonSound.play();
