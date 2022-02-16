@@ -125,6 +125,9 @@ function isWinner() {
         bjSound.play();
         msgStat.innerHTML = 'Dealer has <br/> !! B L A C K J A C K !!'
         stopHitStand();
+      }else{
+        dealerWonSound.play();
+        msgStat.innerHTML = `The dealer has won <br/> Player score: ${playerPoints}<br/> Dealer score: ${dealerPoints}`
       }
     } else {
       if (playerPoints < 22 && playerPoints > dealerPoints && dealerPoints < 22) {
