@@ -59,10 +59,12 @@ Upon loading, the app should: </br>
 
 ---
 ### Special Thanks to
-• General Assembly for card deck
-• Google translate for game status sound
-• freesound.org for special sound
+
+• General Assembly for card deck </br>
+• Google translate for game status sound </br>
+• freesound.org for special sound </br>
 • Google Image for background image, favicon, etc.
+
 ---
 ### Next Steps
 
