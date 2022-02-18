@@ -29,6 +29,7 @@ const banner = document.querySelector("#title");
 hitBtn.addEventListener('click', handleHit);
 standBtn.addEventListener('click', handleStand);
 StartNewGame.addEventListener('click', init);
+
 hitBtn.addEventListener('mouseover',() => {hitBtn.classList.add('animate__animated', 'animate__tada');});
 hitBtn.addEventListener('mouseleave',() => {hitBtn.classList.remove('animate__animated', 'animate__tada');});
 standBtn.addEventListener('mouseover',() => {standBtn.classList.add('animate__animated', 'animate__tada',);});
@@ -111,7 +112,7 @@ function handleHit() { //assign card to player
 function handleStand() { //check winning condition
   
   playerPoints = 0;
-  calcTotal();
+  calcPlayerTotal();
   dealerPlay();
   isWinner();
 }

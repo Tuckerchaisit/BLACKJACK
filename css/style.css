@@ -16,7 +16,8 @@ html {
   --serif: "Cinzel Decorative", serif;
 }
 body {
-  background-color: rgb(9, 58, 14);
+  background-image: url(../images/woodBG.jpg);
+  background-size: 100%;
   font-family: sans-serif;
   margin: 0;
   display: flex;
@@ -29,12 +30,12 @@ main{
   height: 500px;
   text-align: center;
   background-image: url(../images/bg.png);
-  border: solid 6px whitesmoke;
+  border: solid 3px rgba(245, 245, 245, 0.941);
   color: white;
 }
 
 #title{
-  font-size: 45px;
+  font-size: 50px;
   font-weight: bolder;
   padding: 10px 0;
   font-family: var(--serif);
@@ -53,11 +54,11 @@ main{
 }
 
 #dealer-card > .card{
-  margin: 5px 2px 5px;
+  margin: 5px 1px;
 }
 
 #player-card > .card{
-  margin: 5px 2px 5px;
+  margin: 5px 1px;
 }
 
 #msg{
