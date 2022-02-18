@@ -68,6 +68,6 @@ Upon loading, the app should: </br>
 ---
 ### Next Steps
 
-• Add player's bank/budget and bet values
-• Dark/light mode
+• Add player's bank/budget and bet values </br>
+• Dark/light mode </br>
 • More complex algorithm for Dealer's decision
